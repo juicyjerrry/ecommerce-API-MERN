@@ -50,7 +50,9 @@ THEN I am able to successfully create, update, and delete data in my database
 
   ## Screenshot of the Application
 
-  ![Screenshot of the application]()
+  ![Screenshot of the application](../ecommerce-project-12/assets/jeremiahkendl-ecommerce-snapshot.PNG)
+  
+  ![Video of the application](../ecommerce-project-12/assets/jeremiahkendl-ecommerce-demo.webm)
   
   ## License
   

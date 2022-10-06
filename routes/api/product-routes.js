@@ -4,22 +4,17 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // The `/api/products` endpoint
 
 // get all products
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
-  Product.findAll({
-    include: [
-      {
-        model: Product,
-        through: ProductTag
-      }
-    ]
-  })
-    .then(dbTagData => res.json(dbTagData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+ try {
+    const productData = await Product.findAll({
+      include: [{ all: true, nested: true }]
     });
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // get one product
@@ -79,7 +74,7 @@ router.post('/', (req, res) => {
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
-      res.status(400).json(err);
+      // res.status(400).json(err);
     });
 });
 
@@ -121,7 +116,7 @@ router.put('/:id', (req, res) => {
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
       // console.log(err);
-      res.status(400).json(err);
+      // res.status(400).json(err);
     });
 });
 
